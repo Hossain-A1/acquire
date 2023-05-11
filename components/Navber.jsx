@@ -4,7 +4,7 @@ import Button from "./Button";
 const Navber = () => {
   return (
     <div className="h-20 bg-slate-200 flex items-center">
-      <div className="wrapper flex justify-between">
+      <div className="wrapper flex justify-between items-center">
         <Link href="/" className="text-2xl text-orange-800 font-semibold">
           Acquire
         </Link>
@@ -33,7 +33,7 @@ const Navber = () => {
           </Link>
         </div>
         <div>
-        <Button href="/login" placeholder="Sign in"/>
+        <Button href="/login" placeholder="Sign in" color="secondary"/>
         </div>
       </div>
     </div>
