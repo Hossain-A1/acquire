@@ -33,7 +33,7 @@ const Navber = () => {
           </Link>
         </div>
         <div>
-        <Button href="/login" placeholder="Sign in" color="secondary"/>
+        <Button href="/users/login" placeholder="Sign in" color="secondary"/>
         </div>
       </div>
     </div>
