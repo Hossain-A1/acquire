@@ -1,13 +1,15 @@
 import "@/styles/globals.css";
 import Navber from "@/components/Navber";
 import Footer from "@/components/Footer";
-
-export default function App({ Component, pageProps }) {
+import { SessionProvider } from "next-auth/react";
+export default function App({ Component, pageProps,session }) {
   return (
     <>
-      <Navber />
-      <Component {...pageProps} />
-      <Footer />
+      <SessionProvider session={session}>
+        <Navber />
+        <Component {...pageProps} />
+        <Footer />
+      </SessionProvider>
     </>
   );
 }

@@ -1,4 +1,3 @@
-import React from 'react'
 import Courses from './courses';
 import { getAllCourses } from '@/prisma/process';
 
