@@ -2,6 +2,10 @@ import SectionTitle from "@/components/SectionTitle";
 import { getCourse } from "@/prisma/process";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
+// Stripe promise//
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 const Chackout = ({ course }) => {
   const { data: session } = useSession();
@@ -11,10 +15,9 @@ const Chackout = ({ course }) => {
     email: "",
     mobile: "",
     address: "",
-    courseTitile: course.title,
+    courseTitle: course.title,
     price: course.price,
   });
-
   useEffect(() => {
     if (session) {
       setUsersFromData((prev) => ({
@@ -24,11 +27,27 @@ const Chackout = ({ course }) => {
       }));
     }
   }, [session]);
-
+  /* Checkout Handler */
   const handleCheckout = async (e) => {
     e.preventDefault();
 
-    console.log(usersFromData);
+    const stripe = await stripePromise;
+    /* Send a postr request to the server */
+    const checkoutSession = await axios.post("/api/create-checkout-session ", {
+      items: [course],
+      name: usersFromData.name,
+      email: usersFromData.email,
+      mobile: usersFromData.mobile,
+      address: usersFromData.address,
+      courseTitle: usersFromData.courseTitle,
+    });
+    /*Redirect to the stripe payment */
+    const result = await stripe.redirectToCheckout({
+      sessionId: checkoutSession.data.id,
+    });
+    if (result.error) {
+      console.log(result.error.message);
+    }
   };
   return (
     <div className="wrapper py-10 min-h-screen">
@@ -84,6 +103,7 @@ const Chackout = ({ course }) => {
               onChange={(e) =>
                 setUsersFromData({ ...usersFromData, mobile: e.target.value })
               }
+              required
             />
           </div>
 
@@ -100,19 +120,20 @@ const Chackout = ({ course }) => {
               onChange={(e) =>
                 setUsersFromData({ ...usersFromData, address: e.target.value })
               }
+              required
             />
           </div>
 
           <div className="flex flex-col  gap-2">
-            <label htmlFor="courseTitile" className="text-xl font-medium">
+            <label htmlFor="courseTitle" className="text-xl font-medium">
               Course title
             </label>
             <input
               className="py-2 px-4 w-full border border-gray-400 outline-none focus:border-gray-500 duration-300 rounded"
               type="text"
-              id="courseTitile"
+              id="courseTitle"
               placeholder="Advanced web design"
-              value={usersFromData.courseTitile}
+              value={usersFromData.courseTitle}
               readOnly
             />
           </div>
