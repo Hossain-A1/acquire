@@ -32,7 +32,7 @@ const Chackout = ({ course }) => {
     e.preventDefault();
 
     const stripe = await stripePromise;
-    /* Send a postr request to the server */
+    /* Send a post request to the server */
     const checkoutSession = await axios.post("/api/create-checkout-session ", {
       items: [course],
       name: usersFromData.name,
@@ -40,6 +40,7 @@ const Chackout = ({ course }) => {
       mobile: usersFromData.mobile,
       address: usersFromData.address,
       courseTitle: usersFromData.courseTitle,
+      courseId:course.id
     });
     /*Redirect to the stripe payment */
     const result = await stripe.redirectToCheckout({
