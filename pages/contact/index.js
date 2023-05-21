@@ -1,21 +1,34 @@
-import Button from "@/components/Button";
-import { useState } from "react";
+import { useRef } from "react";
+import emailJs from "@emailjs/browser";
 
 const Contact = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const fromRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // EmailJS integration
+    emailJs
+      .sendForm(
+        process.env.NEXT_PUBLIC_EMAIL_JS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID,
+        fromRef.current,
+        process.env.NEXT_PUBLIC_EMAIL_JS_PUBLIC_ID
+      )
+      .then(
+        () => {
+          console.log("message sent");
+        },
+        () => {
+          console.log("message feild");
+        }
+      );
+
     //reset fromFields
-    setName("");
-    setEmail("");
   };
   return (
     <div className="wrapper grid grid-cols-1 lg:grid-cols-2 gap-10">
-      
-      <form onSubmit={handleSubmit} className="py-5 lg:py-10">
+      <form onSubmit={handleSubmit} className="py-5 lg:py-10" ref={fromRef}>
         <h1 className="text-4xl text-rose-500 uppercase mb-10">
           Cntact for course
         </h1>
@@ -28,10 +41,9 @@ const Contact = () => {
             Name
           </label>
           <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
             className="border py-4 px-5 outline-none focus:border-gray-500 duration-300"
             id="name"
+            name="name"
             type="text"
             placeholder="Write your name"
           />
@@ -39,12 +51,12 @@ const Contact = () => {
             Eamil
           </label>
           <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
             className="border py-4 px-5 outline-none  focus:border-gray-500 duration-300"
             id="email"
+            name="email"
             type="email"
             placeholder="Write your email"
+            required
           />
           <label className="text-gray-600 uppercase" htmlFor="message">
             Message
@@ -52,19 +64,18 @@ const Contact = () => {
           <textarea
             className="border text-gray-500 outline-none px-5 py-4   focus:border-gray-500 duration-300"
             name="message"
-            id=""
+            id="message"
             cols="10"
             rows="6"
-          >
-            Write your message
-          </textarea>
+            placeholder="message"
+          ></textarea>
         </div>
-        <Button
+        <button
           type="submit"
-          href="submit"
-          placeholder="Submit"
-          color="secondary"
-        />
+          className="py-2 px-4 bg-rose-700 text-white rounded"
+        >
+          Submit
+        </button>
       </form>
 
       <div className=" lg:py-32 space-y-5">
