@@ -2,13 +2,15 @@ import CourseItem from "@/components/CourseItem";
 import SectionTitle from "@/components/SectionTitle";
 import { getAllCourses } from "@/prisma/process";
 
-const Courses = ({ courses }) => {
+const CoursesPage = ({ courses }) => {
   return (
     <div className="wrapper py-10">
       <SectionTitle
         span="Courses"
         h2="Visit all courses"
-        p="serves to state the rationale for the course and give an overview of key content covered, skills and knowledge to be learned, and how it will benefit the student."
+        p="
+        acquire website is an online store for course selling. It facilities to students to achieve their aims. This website has included the best successful courses, It's high time to enrol these courses for a better future. 
+        "
       />
 
       <div className="mt-10 flex flex-wrap gap-5">
@@ -20,7 +22,7 @@ const Courses = ({ courses }) => {
   );
 };
 
-export default Courses;
+export default CoursesPage;
 
 export const getServerSideProps = async () => {
   const courses = await getAllCourses();

@@ -2,11 +2,18 @@ import { currencyConverter } from "@/utils/currencyConverter";
 import Image from "next/image";
 import { AiOutlineStar } from "react-icons/ai";
 import Button from "./Button";
-
+import { motion } from "framer-motion";
+import { getAnimation, shutterCard } from "@/utils/motion";
 
 const CourseItem = ({ course }) => {
   return (
-    <div className="w-full lg:w-[20rem] shadow-md hover:shadow-lg duration-300 rounded overflow-hidden">
+    <motion.div
+      className="w-full lg:w-[20rem] shadow-md hover:shadow-lg duration-300 rounded overflow-hidden"
+      variants={shutterCard()}
+      initial="from"
+      whileInView="to"
+      translate={getAnimation(0.5, 2.5, "easeInOut")}
+    >
       <div className="w-full h-[25rem] lg:h-[20rem] overflow-hidden">
         <Image
           src={course.cover}
@@ -51,13 +58,16 @@ const CourseItem = ({ course }) => {
         </p>
 
         <p className="text-gray-500 h-[4.5rem] -mt-[10rem]">
-          {course.description.substring(0,90)}...</p>
+          {course.description.substring(0, 90)}...
+        </p>
         <div className="flex justify-between">
-          <p className="text-black font-black text-lg">{currencyConverter(course.price , "en-US", "USD")}</p>
-          <Button href={`courses/${course.id}`} placeholder="View Datails"/>
+          <p className="text-black font-black text-lg">
+            {currencyConverter(course.price, "en-US", "USD")}
+          </p>
+          <Button href={`courses/${course.id}`} placeholder="View Datails" />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

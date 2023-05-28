@@ -1,9 +1,10 @@
 import { useRef } from "react";
 import emailJs from "@emailjs/browser";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Contact = () => {
   const fromRef = useRef(null);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -17,18 +18,40 @@ const Contact = () => {
       )
       .then(
         () => {
-          console.log("message sent");
+          toast.success("Your message sent!", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         },
         () => {
-          console.log("message feild");
+          toast.error("Failed to send message!", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }
       );
 
     //reset fromFields
+    e.target.querySelector(".name").value = "";
+    e.target.querySelector(".email").value = "";
+    e.target.querySelector(".message").value = "";
   };
+
   return (
     <div className="wrapper grid grid-cols-1 lg:grid-cols-2 gap-10">
-      <form onSubmit={handleSubmit} className="py-5 lg:py-10" ref={fromRef}>
+      <form ref={fromRef} onSubmit={handleSubmit} className="py-5 lg:py-10">
         <h1 className="text-4xl text-rose-500 uppercase mb-10">
           Cntact for course
         </h1>
@@ -41,7 +64,7 @@ const Contact = () => {
             Name
           </label>
           <input
-            className="border py-4 px-5 outline-none focus:border-gray-500 duration-300"
+            className=" name border py-4 px-5 outline-none focus:border-gray-500 duration-300"
             id="name"
             name="name"
             type="text"
@@ -51,7 +74,7 @@ const Contact = () => {
             Eamil
           </label>
           <input
-            className="border py-4 px-5 outline-none  focus:border-gray-500 duration-300"
+            className="email border py-4 px-5 outline-none  focus:border-gray-500 duration-300"
             id="email"
             name="email"
             type="email"
@@ -62,7 +85,7 @@ const Contact = () => {
             Message
           </label>
           <textarea
-            className="border text-gray-500 outline-none px-5 py-4   focus:border-gray-500 duration-300"
+            className=" message border text-gray-500 outline-none px-5 py-4   focus:border-gray-500 duration-300"
             name="message"
             id="message"
             cols="10"
@@ -72,7 +95,7 @@ const Contact = () => {
         </div>
         <button
           type="submit"
-          className="py-2 px-4 bg-rose-700 text-white rounded"
+          className="py-2 px-4 bg-rose-700 hover:bg-rose-800 duration-300 text-white rounded"
         >
           Submit
         </button>

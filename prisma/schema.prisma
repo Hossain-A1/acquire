@@ -1,5 +1,5 @@
 // This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 
 generator client {
   provider = "prisma-client-js"
@@ -46,5 +46,12 @@ model Order {
   updatedAt DateTime @updatedAt
 
   userId String @db.ObjectId
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields:[userId], references: [id])
+}
+
+model Team {
+   id String @id @default(auto()) @map("_id") @db.ObjectId
+   photo String
+   name String
+   career String
 }

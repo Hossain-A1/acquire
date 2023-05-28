@@ -9,7 +9,14 @@ export const getAllCourses = async () => {
 //get a single course
 export const getCourse = async (id) => {
   const course = await prisma.course.findUnique({
-    where: { id},
+    where: { id },
   });
   return course;
+};
+
+//get team members
+export const getTeamMembers = async () => {
+  const teams = await prisma.team.findMany({});
+
+  return teams;
 };
