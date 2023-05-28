@@ -56,12 +56,7 @@ const About = ({ teams }) => {
           eveniet quas laborum accusamus non placeat consectetur ipsum tempore.
           Pariatur nostrum laborum debitis enim, porro cumque, laboriosam
           perspiciatis corporis aliquam nobis totam facere, harum iusto dolor
-          eveniet laudantium vel error velit quod quae. Accusantium, suscipit?
-          Non, fuga distinctio exercitationem reprehenderit illum facilis nobis
-          aspernatur vel iure omnis ducimus ab quis doloremque repudiandae
-          provident ut culpa, odio, esse asperiores commodi sapiente magni!
-          Illum, voluptatem amet quae sit corrupti, delectus adipisci eius,
-          voluptatibus natus aliquam illo beatae. Ipsum obcaecati architecto
+          eveniet laudantium vel error velit quod quae. Ipsum obcaecati architecto
           recusandae quibusdam et, ratione cum debitis, unde fuga est dicta
           accusantium ipsam libero explicabo officiis sunt nesciunt mollitia
           inventore, expedita pariatur totam nam eius aliquam itaque. Laudantium
