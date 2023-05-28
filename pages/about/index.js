@@ -10,6 +10,7 @@ const About = ({ teams }) => {
           src={
             "https://res.cloudinary.com/dyaj1dlzu/image/upload/v1684691482/About_Acquire_xlhqdt.jpg"
           }
+          alt="acquire banner"
           width={440}
           height={20}
           className="w-full h-[12rem]"
