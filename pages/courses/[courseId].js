@@ -4,17 +4,16 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 const CourseItem = ({ course }) => {
-  const {data: session} = useSession()
-  const router = useRouter() 
+  const { data: session } = useSession();
+  const router = useRouter();
 
-const handleEnroll  = async ()=>{
-  if(session){
-  router.push(`/checkout/${course.id}`)
-
-  }else{
-    router.push(`/users/login?destination=/checkout/${course.id}`)
-  }
-}
+  const handleEnroll = async () => {
+    if (session) {
+      router.push(`/checkout/${course.id}`);
+    } else {
+      router.push(`/users/login?destination=/checkout/${course.id}`);
+    }
+  };
   return (
     <div className="wrapper py-10 min-h-screen">
       <div
@@ -50,7 +49,12 @@ const handleEnroll  = async ()=>{
           <p className="font-semibold text-3xl">
             Price:{currencyConverter(course.price)}
           </p>
-         <button onClick={handleEnroll} className="bg-gray-900 text-gray-50 py-3 px-6 rounded-lg w-full hover:bg-gray-700 duration-300">Enroll Now</button>
+          <button
+            onClick={handleEnroll}
+            className="bg-gray-900 text-gray-50 py-3 px-6 rounded-lg w-full hover:bg-gray-700 duration-300"
+          >
+            Enroll Now
+          </button>
         </div>
       </div>
     </div>
