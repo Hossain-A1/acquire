@@ -2,7 +2,10 @@ import prisma from "./prisma";
 
 // get al courses
 export const getAllCourses = async () => {
-  const courses = await prisma.course.findMany({});
+  const courses = await prisma.course?.findMany({});
+  if (!courses) {
+    throw new Error("All courses not get");
+  }
 
   return courses;
 };
@@ -15,8 +18,7 @@ export const getCourse = async (id) => {
 };
 
 //get team members
-export const getTeamMembers = async () => {
-  const teams = await prisma.team.findMany({});
-
-  return teams;
+export const getTeam = async () => {
+  const tutors = await prisma.tutor.findMany({});
+  return tutors;
 };

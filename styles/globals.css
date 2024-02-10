@@ -5,5 +5,27 @@
 
 
 .wrapper {
-  @apply container mx-auto px-10 lg:px-0;
+  @apply container mx-auto px-10;
 }
+
+/* responsive  navigation*/
+.mobile-navber-btn {
+  @apply hidden bg-transparent cursor-pointer border-none max-lg:inline-block max-lg:z-[9999] max-lg:border;
+}
+
+.active .mobile-navber-icon {
+  @apply max-lg:hidden max-lg:text-xl  max-lg:absolute 
+}
+
+.mobile-navber-icon[name="close-outline"] {
+  @apply hidden max-lg:text-xl max-lg:text-white ;
+}
+
+
+.close-outline {
+  @apply hidden text-xl;
+}
+.active .close-outline {
+  @apply max-lg:inline-block fixed top-8 right-6 border   text-white;
+}
+  

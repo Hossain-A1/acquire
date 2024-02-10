@@ -4,7 +4,7 @@ import { getAllCourses } from "@/prisma/process";
 
 const CoursesPage = ({ courses }) => {
   return (
-    <div className="wrapper py-10">
+    <div className="wrapper h-full w-full py-10">
       <SectionTitle
         span="Courses"
         h2="Visit all courses"
@@ -13,7 +13,7 @@ const CoursesPage = ({ courses }) => {
         "
       />
 
-      <div className="mt-10 flex flex-wrap gap-5">
+      <div className="mt-10 grid lg:grid-cols-3 grid-cols-1 items-center gap-5">
         {courses.map((course) => (
           <CourseItem key={course.id} course={course} />
         ))}

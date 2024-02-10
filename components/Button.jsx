@@ -4,8 +4,9 @@ import clsx from "clsx";
 const buttonVariants = cva("rounded-md transition-colors duration-300", {
   variants: {
     color: {
-      primary: "bg-gray-900 text-gray-50",
-      secondary: "bg-rose-700 text-gray-50 hover:bg-rose-800",
+      primary: "bg-gray-800 text-gray-50 border-2 hover:bg-gray-950",
+      secondary: "bg-rose-700 shadow-lg border-2 border-gray-100 text-gray-50 hover:bg-rose-800",
+      lazy:"border-2 px-6 py-2 shadow-lg border-gray-100 text-gray-50 font-medium bg-gray-950 hover:bg-slate-600"
     },
     size: {
       default: "py-2 px-4",
@@ -14,6 +15,7 @@ const buttonVariants = cva("rounded-md transition-colors duration-300", {
   },
   defaultVariants: {
     color: "primary",
+    color:"lazy",
     size: "default",
   },
 });

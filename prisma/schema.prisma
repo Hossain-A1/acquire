@@ -49,9 +49,11 @@ model Order {
   user User @relation(fields:[userId], references: [id])
 }
 
-model Team {
-   id String @id @default(auto()) @map("_id") @db.ObjectId
+
+model tutor {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
    photo String
    name String
    career String
+   details String
 }

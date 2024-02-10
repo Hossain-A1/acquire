@@ -50,7 +50,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="wrapper grid grid-cols-1 lg:grid-cols-2 gap-10">
+    <div className="wrapper grid grid-cols-1 lg:grid-cols-2 gap-10 md:py-36 lg:py-0">
       <form ref={fromRef} onSubmit={handleSubmit} className="py-5 lg:py-10">
         <h1 className="text-4xl text-rose-500 uppercase mb-10">
           Cntact for course
